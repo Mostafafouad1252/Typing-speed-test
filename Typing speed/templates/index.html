@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Speed Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Typing Speed Test</h1>
+      <p class="subtitle">Create an account, login, then start practicing.</p>
+
+      <section id="auth-section" class="panel">
+        <div class="auth-grid">
+          <form id="register-form" class="auth-form">
+            <h2>Register</h2>
+            <input id="reg-username" type="text" placeholder="Username" required minlength="3" />
+            <input id="reg-password" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
+            <button type="submit">Register</button>
+          </form>
+
+          <form id="login-form" class="auth-form">
+            <h2>Login</h2>
+            <input id="login-username" type="text" placeholder="Username" required />
+            <input id="login-password" type="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        <p id="auth-message" class="message"></p>
+      </section>
+
+      <section id="typing-section" class="hidden">
+        <div class="toolbar">
+          <p id="welcome" class="welcome"></p>
+          <button id="logout-btn" class="small-btn" type="button">Logout</button>
+        </div>
+
+        <section class="settings">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <label for="test-time">Time (seconds)</label>
+          <input id="test-time" type="number" min="15" max="300" value="60" />
+        </section>
+
+        <section class="stats" aria-label="Typing statistics">
+          <div class="stat-card">
+            <span class="label">Time Left</span>
+            <span id="timer" class="value">60s</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">WPM</span>
+            <span id="wpm" class="value">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Accuracy</span>
+            <span id="accuracy" class="value">100%</span>
+          </div>
+        </section>
+
+        <section class="typing-area">
+          <p id="sample-text" class="sample-text" aria-live="polite"></p>
+
+          <label for="typing-input" class="input-label">Start typing here:</label>
+          <textarea
+            id="typing-input"
+            class="typing-input"
+            rows="4"
+            placeholder="Start typing to begin the timer..."
+            autocomplete="off"
+            spellcheck="false"
+          ></textarea>
+        </section>
+
+        <button id="reset-btn" class="reset-btn" type="button">Reset / New Text</button>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
